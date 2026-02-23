@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecciones | MicroDSI</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <span style="color: var(--accent)">Micro</span>DSI
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="feed.html" class="active">Aprender</a></li>
+                    <li><a href="pista.html">Práctica</a></li>
+                    <li><a href="lab.html">Laboratorio</a></li>
+                </ul>
+                <a href="lab.html" class="btn btn-primary">Mi Lab</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="track-selector-strip">
+        <div class="container">
+            <div class="track-container">
+                <button class="track-btn active" data-track="ITSM" onclick="setTrack('ITSM')">💻 Gestión IT</button>
+                <button class="track-btn" data-track="HR" onclick="setTrack('HR')">👥 Recursos Humanos</button>
+                <button class="track-btn" data-track="PROCUREMENT" onclick="setTrack('PROCUREMENT')">🛒 Compras</button>
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+        <div style="margin-top: 4rem; text-align: center;">
+            <h2 style="font-size: 2.5rem;">Micro-Lecciones de Track</h2>
+            <p style="color: var(--text-muted); margin-top: 1rem;">Filtrado dinámico de conocimientos para tu rol específico.</p>
+        </div>
+
+        <div id="feed-grid" class="grid">
+            <!-- Dynamically populated by app.js -->
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 MicroDSI Framework.</p>
+        </div>
+    </footer>
+
+    <script src="assets/app.js"></script>
+    <script>
+        // Ensure buttons state is correct on load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateTrackButtons();
+            renderAll();
+        });
+    </script>
+</body>
+</html>

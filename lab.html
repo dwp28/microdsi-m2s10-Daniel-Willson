@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorio SIPOC | MicroDSI</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .sipoc-builder {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .sipoc-box {
+            background: var(--primary);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            border: 1px dashed var(--border);
+        }
+        .sipoc-box h4 {
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        .sipoc-box textarea {
+            font-size: 0.85rem;
+            height: 100px;
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <span style="color: var(--accent)">Micro</span>DSI
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="feed.html">Aprender</a></li>
+                    <li><a href="pista.html">Práctica</a></li>
+                    <li><a href="lab.html" class="active">Laboratorio</a></li>
+                </ul>
+                <button onclick="exportMarkdown()" class="btn btn-primary">Exportar .MD</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container" style="padding: 4rem 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem;">
+            <div>
+                <h2 style="font-size: 2.5rem;">Laboratorio de Transformación</h2>
+                <p style="color: var(--text-muted)">Construye tu propuesta técnica para el track: <span id="lab-current-track" style="color: var(--secondary); font-weight: 700;">...</span></p>
+            </div>
+        </div>
+
+        <div class="lab-grid">
+            <div class="lab-main-col">
+                <!-- Section 1: Inventory -->
+                <section class="lab-section" style="margin-bottom: 2rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                        <h3>1. Inventario L1 y Priorización</h3>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <input type="text" id="proc-name" placeholder="Nombre del proceso..." style="width: 250px;">
+                            <button class="btn btn-primary" onclick="addProcess()">Añadir</button>
+                        </div>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Proceso</th>
+                                    <th>Impacto</th>
+                                    <th>Esfuerzo</th>
+                                    <th>Riesgo</th>
+                                    <th>Score</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="inventory-body">
+                                <!-- Populated by app.js -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Section 2: SIPOC -->
+                <section class="lab-section">
+                    <h3>2. Constructor SIPOC (Proceso Ganador)</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Define los elementos clave para tu proceso prioridad #1.</p>
+                    
+                    <div class="sipoc-builder">
+                        <div class="sipoc-box">
+                            <h4>Suppliers</h4>
+                            <textarea id="sipoc-suppliers" placeholder="Ej: Proveedores IT, RRHH..."></textarea>
+                        </div>
+                        <div class="sipoc-box">
+                            <h4>Inputs</h4>
+                            <textarea id="sipoc-inputs" placeholder="Ej: Datos, Hardware..."></textarea>
+                        </div>
+                        <div class="sipoc-box">
+                            <h4>Process</h4>
+                            <textarea id="sipoc-process" placeholder="1. Inicio&#10;2. Ejecución..."></textarea>
+                        </div>
+                        <div class="sipoc-box">
+                            <h4>Outputs</h4>
+                            <textarea id="sipoc-outputs" placeholder="Ej: Reporte, Servicio..."></textarea>
+                        </div>
+                        <div class="sipoc-box">
+                            <h4>Customers</h4>
+                            <textarea id="sipoc-customers" placeholder="Ej: Usuarios, Clientes..."></textarea>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="lab-sidebar">
+                <!-- Top 5 Visibility -->
+                <section class="lab-section" style="margin-bottom: 2rem; background: rgba(139, 92, 246, 0.05); border-color: var(--secondary);">
+                    <h3 style="color: var(--secondary); margin-bottom: 1.5rem;">🏆 Top 5 a Automatizar</h3>
+                    <div id="top5-list">
+                        <!-- Populated by app.js -->
+                    </div>
+                </section>
+
+                <!-- No-Scope / MVP -->
+                <section class="lab-section">
+                    <h3>3. No-Alcance (MVP)</h3>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">¿Qué quedará fuera de esta fase inicial para asegurar el éxito?</p>
+                    <textarea id="no-scope-text" style="height: 150px; font-size: 0.9rem;" placeholder="Define los límites del proyecto..."></textarea>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 MicroDSI Framework | Entregable M2-S10</p>
+        </div>
+    </footer>
+
+    <script src="assets/app.js"></script>
+</body>
+</html>

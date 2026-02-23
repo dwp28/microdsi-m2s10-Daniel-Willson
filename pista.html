@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caso Guiado | MicroDSI</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <span style="color: var(--accent)">Micro</span>DSI
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="feed.html">Aprender</a></li>
+                    <li><a href="pista.html" class="active">Práctica</a></li>
+                    <li><a href="lab.html">Laboratorio</a></li>
+                </ul>
+                <a href="lab.html" class="btn btn-primary">Ir al Lab</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="track-selector-strip">
+        <div class="container">
+            <div class="track-container">
+                <button class="track-btn active" data-track="ITSM" onclick="setTrack('ITSM'); currentStep=0; renderPista(document.getElementById('pista-content'))">💻 Gestión IT</button>
+                <button class="track-btn" data-track="HR" onclick="setTrack('HR'); currentStep=0; renderPista(document.getElementById('pista-content'))">👥 Recursos Humanos</button>
+                <button class="track-btn" data-track="PROCUREMENT" onclick="setTrack('PROCUREMENT'); currentStep=0; renderPista(document.getElementById('pista-content'))">🛒 Compras</button>
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+        <div class="pista-container">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2>Simulación de Implementación</h2>
+                <p style="color: var(--text-muted)">Completa todos los pasos para habilitar el Laboratorio.</p>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+
+            <div id="pista-content">
+                <!-- Dynamically populated by app.js -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 MicroDSI Framework.</p>
+        </div>
+    </footer>
+
+    <script src="assets/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            updateTrackButtons();
+            renderPista(document.getElementById('pista-content'));
+        });
+    </script>
+</body>
+</html>
